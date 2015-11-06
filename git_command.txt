@@ -1,0 +1,7 @@
+-- 追加
+git add .
+git commit -m "    "
+git push -u origin master
+
+-- 取得
+git pull
