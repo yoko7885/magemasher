@@ -8,7 +8,7 @@
 
     <!-- Carousel
     ================================================== -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -17,12 +17,12 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+          <img class="first-slide" src="./materials/field1.jpg" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Example headline.</h1>
-              <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+              <h1>アイウエオ草原</h1>
+              <p>あいうえおかきくけこさしすせそたちつてと。わをんらりるれろ。</p>
+              <p><a class="btn btn-lg btn-primary" id="do_search" role="button">探索</a></p>
             </div>
           </div>
         </div>
@@ -106,15 +106,15 @@
               </div>
               <div class="form-group">
                 <label class="col-sm-4">Search Pt</label>
-                <div class="col-sm-8">{$user.sch_pt}</div>
+                <div class="col-sm-8">{$user.now_pt} pt / {$user.sch_pt} pt</div>
               </div>
               <div class="form-group">
                 <label class="col-sm-4">Attack</label>
-                <div class="col-sm-8">{$user.atk_pt}</div>
+                <div class="col-sm-8">{$user.atk_pt} pt</div>
               </div>
               <div class="form-group">
                 <label class="col-sm-4">Deffence</label>
-                <div class="col-sm-8">{$user.def_pt}</div>
+                <div class="col-sm-8">{$user.def_pt} pt</div>
               </div>
               <div class="form-group">
                 <label class="col-sm-4">Remark</label>
@@ -133,5 +133,6 @@
 
     </div><!-- /.container -->
     {include file='../view/footer.tpl'}
+    <script src="./js/top.js"></script>
   </body>
 </html>

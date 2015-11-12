@@ -3,6 +3,7 @@ abstract class base
 {
     public static $smarty;
     public $db;
+    public $user_db;
     
     public $next_access = null;
     public $next_method = null;
@@ -41,10 +42,18 @@ abstract class base
         $this->db = new txtSQL('./data');
         $this->db->connect('root', '');
         $this->db->selectdb('magemasher');
+        
+        if ($_SESSION['MGM_ACCOUNT_ID'])
+        {
+            $this->user_db = new txtSQL('./data');
+            $this->user_db->connect('root', '');
+            $this->user_db->selectdb('account_'.$_SESSION['MGM_ACCOUNT_ID']);
+        }
     }
     public function unset_db()
     {
         $this->db->disconnect();
+        $this->user_db->disconnect();
     }
 }
 ?>

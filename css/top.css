@@ -93,9 +93,13 @@ body {
 
 .featurette-well .form-group {
   margin-bottom: 0px;
+  font-size: 18px;
 }
-.featurette-well .form-group label {
+.featurette-well .form-group .col-sm-4 {
   text-align: right;
+}
+.featurette-well .form-group .col-sm-8 {
+  margin-bottom: 5px;
 }
 
 

@@ -19,7 +19,7 @@
 *-----------------------------------------------------------------------*
 *  NOTE- Tab size in this file: 8 spaces/tab                            *
 *-----------------------------------------------------------------------*
-*  ©2003 Faraz Ali, ChibiGuy Production [http://txtsql.sourceforge.net] *
+*  ï¿½2003 Faraz Ali, ChibiGuy Production [http://txtsql.sourceforge.net] *
 *  File: txtSQL.core.php                                                *
 ************************************************************************/
 

@@ -1,20 +1,19 @@
 <?php
-class top extends base
+class request extends base
 {
     public function __construct()
     {
         parent::__construct(__CLASS__);
     }
     
-    public function start()
+    public function start(){}
+    
+    public function search()
     {
-        $account_id = $_SESSION['MGM_ACCOUNT_ID'];
-        $user = $this->get_user($account_id)[0];
-        
-        $this->refresh_sch_pt($user);
-        
+        $result = '1';
         $smarty = $this->get_smarty();
-        $smarty->assign('user', $user);
+        $smarty->assign('callback', $_REQUEST['callback']);
+        $smarty->assign('json', json_encode($result));
     }
 
     private function get_user($account_id)

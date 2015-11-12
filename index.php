@@ -7,6 +7,8 @@ require_once('./modules/base.php');
 
 require_once('./modules/utils.php');
 // echo utils::crypt('top');//KOdyhZFvN7g%3D
+// echo utils::crypt('request');//dYHtB9ANEcg%3D
+// echo utils::crypt('search');//Qh36TRW6HtA%3D
 
 define ('TXTSQL_CORE_PATH', './modules/');
 define ('TXTSQL_PARSER_PATH', './modules/');
