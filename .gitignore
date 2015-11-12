@@ -1,4 +1,5 @@
 log/
 temp/
 data/magemasher/*.MYD
+data/account_3/*.MYD
 memo.txt
