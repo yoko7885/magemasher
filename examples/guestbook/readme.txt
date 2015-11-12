@@ -1,3 +1,0 @@
-- First create a database for the guestbook
-- Run install.php
-- Now run index.php in the webbrowser

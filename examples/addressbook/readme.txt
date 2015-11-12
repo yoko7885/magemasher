@@ -1,4 +1,0 @@
-- First create a database for the addressbook
-- Run install.php
-- Open up index.php and change the configuration settings at the top
-- Now run index.php in the webbrowser
