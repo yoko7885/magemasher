@@ -13,11 +13,11 @@ include('./includes/header.php');
 	</tr>
 </table>
 <table width="100%" height="80%" cellspacing="3" cellpadding="5" align="center" border="0">
-	<tr bgcolor="EFEFEF">
+	<tr bgcolor="#EFEFEF">
 		<td valign="top">
 			<table width="100%" height="100%" cellspacing="0" cellpadding="3" border="0">
 				<tr>
-					<td width="150" valign="top" bgcolor="E5E5E5">
+					<td width="150" valign="top" bgcolor="#E5E5E5">
 						<?php include('./includes/left.php'); ?>
 
 					</td>
@@ -28,21 +28,21 @@ include('./includes/header.php');
 
 						<table width="100%" cellspacing="1" cellpadding="4" border="0">
 							<tr align="center">
-								<td width="50%"><b><font color="515151">Database Name</font></b></td>
-								<td colspan="5"><b><font color="515151">Action</font></b></td>
-								<td><b><font color="515151">Tables</font></b></td>
+								<td width="50%"><b><font color="#515151">Database Name</font></b></td>
+								<td colspan="5"><b><font color="#515151">Action</font></b></td>
+								<td><b><font color="#515151">Tables</font></b></td>
 							</tr>
 							<tr>
-								<td height="1" bgcolor="C0C0C0" colspan="9"></td>
+								<td height="1" bgcolor="#C0C0C0" colspan="9"></td>
 							</tr><?php
 							
-							$bg          = "E1E1E1";
+							$bgcolor     = "#E1E1E1";
 							$totalTables = 0;
 
 							if ( empty($databases) )
 							{
 								echo "\t\t\t\t\t\t\t<tr>\n";
-								echo "\t\t\t\t\t\t\t\t<td bgcolor=\"E1E1E1\" colspan=\"7\" align=\"center\"><b><font color=\"515151\">No Databases Found</font></b></td>\n";
+								echo "\t\t\t\t\t\t\t\t<td bgcolor=\"#E1E1E1\" colspan=\"7\" align=\"center\"><b><font color=\"#515151\">No Databases Found</font></b></td>\n";
 								echo "\t\t\t\t\t\t\t</tr>";
 							}
 							else
@@ -52,7 +52,7 @@ include('./includes/header.php');
 									$tables       = count(execute('show tables', array('db' => $value)));
 									$totalTables += $tables;
 
-									echo "\t\t\t\t\t\t\t<tr bgcolor=\"".($bgcolor = $bgcolor == 'E1E1E1' ? 'BFBFBF' : 'E1E1E1' )."\" align=\"center\">\n";
+									echo "\t\t\t\t\t\t\t<tr bgcolor=\"".($bgcolor = $bgcolor == '#E1E1E1' ? '#BFBFBF' : '#E1E1E1' )."\" align=\"center\">\n";
 									echo "\t\t\t\t\t\t\t\t<td align=\"left\">> <a>$value</a></td>\n";
 									echo "\t\t\t\t\t\t\t\t<td width=\"20\"><a href=\"index.php?page=view_database&db=$value\"><img src=\"images/small_databases.gif\" border=\"0\" alt=\"View Tables\"></a></td>\n";
 									echo "\t\t\t\t\t\t\t\t<td width=\"20\"><a href=\"index.php?page=rename_db&db=$value\"><img src=\"images/small_rename_database.png\" border=\"0\" alt=\"Rename Database\"></a></td>\n";
@@ -73,7 +73,7 @@ include('./includes/header.php');
 						</form>
 						<form method="get" action="index.php" name="form1" onsubmit="create_db(this.database.value); return false;">
 						<input type="hidden" name="page" value="create_database">
-						<hr size="2" color="B0B0B0">
+						<hr size="2" color="#B0B0B0">
 
 						<font color="<?php echo (!empty($_GET['action']) && $_GET['action'] == 'create_database' ) ? 'red' : ''; ?>"><b>Create a new database</b></font><br />
 						Name: <input type="text" name="database"> <input type="submit" value="Go" class="btn">

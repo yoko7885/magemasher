@@ -18,11 +18,11 @@ include('./includes/header.php');
 	</tr>
 </table>
 <table width="100%" height="80%" cellspacing="3" cellpadding="5" align="center" border="0">
-	<tr bgcolor="EFEFEF">
+	<tr bgcolor="#EFEFEF">
 		<td valign="top">
 			<table width="100%" height="100%" cellspacing="0" cellpadding="3" border="0">
 				<tr>
-					<td width="150" valign="top" bgcolor="E5E5E5">
+					<td width="150" valign="top" bgcolor="#E5E5E5">
 						<?php include('./includes/left.php') ?>
 					</td>
 					<td valign="top">
@@ -32,11 +32,11 @@ include('./includes/header.php');
 
 						<table width="100%" cellpadding="3" cellspacing="1">
 							<tr>
-								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor=aeaeae>
+								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="#aeaeae">
 								</td>
 							</tr>
 							<tr>
-								<td align=center bgcolor=e1e1e1>
+								<td align=center bgcolor="#e1e1e1">
 									<b><a href="index.php?page=view_databases&db=<?php echo $_GET['db']; ?>&action=create_database">Create DB</a> &nbsp;&nbsp;&nbsp;&nbsp;
 									   <a href="index.php?page=view_database&db=<?php echo $_GET['db']; ?>&action=create_table">Create Table</a> &nbsp;&nbsp;&nbsp;&nbsp;
 									   <a href="javascript:drop_db('<?php echo $_GET['db']; ?>')">Drop DB</a> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -47,7 +47,7 @@ include('./includes/header.php');
 								</td>
 							</tr>
 							<tr>
-								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor=aeaeae>
+								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="#aeaeae">
 								</td>
 							</tr>
 						</table>
@@ -55,16 +55,16 @@ include('./includes/header.php');
 
 						<table width="100%" cellspacing="1" cellpadding="4" border="0">
 							<tr align="center">
-								<td width="40%"><b><font color="515151">Table Name</font></b></td>
-								<td colspan="6"><b><font color="515151">Action</font></b></td>
-								<td><b><font color="515151">Records</font></b></td>
-								<td><b><font color="515151">Size</font></b></td>
+								<td width="40%"><b><font color="#515151">Table Name</font></b></td>
+								<td colspan="6"><b><font color="#515151">Action</font></b></td>
+								<td><b><font color="#515151">Records</font></b></td>
+								<td><b><font color="#515151">Size</font></b></td>
 							</tr>
 							<tr>
-								<td height="1" bgcolor="C0C0C0" colspan="9"></td>
+								<td height="1" bgcolor="#C0C0C0" colspan="9"></td>
 							</tr><?php
 
-							$bg           = "E1E1E1";
+							$bgcolor      = "#E1E1E1";
 							$totalSize    = 0;
 							$totalRecords = 0;
 							echo "\n";
@@ -72,7 +72,7 @@ include('./includes/header.php');
 							if ( empty($tables) )
 							{
 								echo "\t\t\t\t\t\t\t<tr>\n";
-								echo "\t\t\t\t\t\t\t\t<td bgcolor=\"E1E1E1\" colspan=\"9\" align=\"center\"><b><font color=\"515151\">No Tables Found</font></b></td>\n";
+								echo "\t\t\t\t\t\t\t\t<td bgcolor=\"#E1E1E1\" colspan=\"9\" align=\"center\"><b><font color=\"#515151\">No Tables Found</font></b></td>\n";
 								echo "\t\t\t\t\t\t\t</tr>\n";
 							}
 							else
@@ -85,8 +85,8 @@ include('./includes/header.php');
 									$records       = $sql->table_count($value, $_GET['db']);
 									$totalRecords += $records;
 
-									echo "\t\t\t\t\t\t\t<tr bgcolor=\"".($bgcolor = $bgcolor == 'E1E1E1' ? 'BFBFBF' : 'E1E1E1' )."\" align=\"center\">\n";
-									echo "\t\t\t\t\t\t\t\t<td align=\"left\">> <a href=\"index.php?page=tbl_edit&db={$_GET['db']}&table=$value&action=browse\">$value</a></td>\n";
+									echo "\t\t\t\t\t\t\t<tr bgcolor=\"".($bgcolor = $bgcolor == '#E1E1E1' ? '#BFBFBF' : '#E1E1E1' )."\" align=\"center\">\n";
+									echo "\t\t\t\t\t\t\t\t<td align=\"left\">> <a href=\"index.php?page=table_edit&db={$_GET['db']}&table=$value&action=browse\">$value</a></td>\n";
 									echo "\t\t\t\t\t\t\t\t<td><a href=\"index.php?page=table_prop&db={$_GET['db']}&table=$value\"><img src=\"images/small_tbl_properties.png\" border=\"0\" alt=\"View Table Properties\"></a></td>\n";
 									echo "\t\t\t\t\t\t\t\t<td><a href=\"index.php?page=table_edit&db={$_GET['db']}&table=$value&action=browse_table\"><img src=\"images/small_tbl.gif\" border=\"0\" alt=\"Browse Table\"></a></td>\n";
 									echo "\t\t\t\t\t\t\t\t<td><a href=\"index.php?page=search&db={$_GET['db']}&table=$value\"><img src=\"images/small_search.png\" border=\"0\" alt=\"Search Table\"></a></td>\n";
@@ -109,7 +109,7 @@ include('./includes/header.php');
 						</table>
 						</form>
 						<form method="get" action="index.php" name="form2" onsubmit="create_table(this.table.value, this.columns.value); return false;">
-						<hr size="2" color="B0B0B0">
+						<hr size="2" color="#B0B0B0">
 						<input type="hidden" name="page" value="create_table">
 						<input type="hidden" name="db" value="<?php echo $_GET['db']; ?>">
 

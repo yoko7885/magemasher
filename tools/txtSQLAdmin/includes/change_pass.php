@@ -31,11 +31,11 @@ if ( $_GET['finish'] == 1 )
 	</tr>
 </table>
 <table width="100%" height="80%" cellspacing="3" cellpadding="5" align="center" border="0">
-	<tr bgcolor="EFEFEF">
+	<tr bgcolor="#EFEFEF">
 		<td valign="top">
 			<table width="100%" height="100%" cellspacing="0" cellpadding="3" border="0">
 				<tr>
-					<td width="150" valign="top" bgcolor="E5E5E5">
+					<td width="150" valign="top" bgcolor="#E5E5E5">
 						<?php include('./includes/left.php') ?>
 						</form>
 
@@ -51,18 +51,18 @@ if ( $_GET['finish'] == 1 )
 								<td colspan="2" align="center"><b>Change your password</b></b></td>
 							</tr>
 							<tr>
-								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="AEAEAE" colspan="2">
+								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="#AEAEAE" colspan="2">
 								</td>
 							</tr>
-							<tr bgcolor="E1E1E1">
+							<tr bgcolor="#E1E1E1">
 								<td width="150"> > Current password: </td>
 								<td><input type="password" name="oldpass"></td>
 							</tr>
-							<tr bgcolor="BFBFBF">
+							<tr bgcolor="#BFBFBF">
 								<td width="150"> > New Password: </td>
 								<td><input type="password" name="newpass"></td>
 							</tr>
-							<tr bgcolor="E1E1E1">
+							<tr bgcolor="#E1E1E1">
 								<td width="150"> > New Password (confirm): </td>
 								<td><input type="password" name="newpass1"></td>
 							</tr>

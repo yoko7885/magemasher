@@ -40,9 +40,9 @@
 						</table><?php
 						if ( !empty($_GET['db']) )
 						{
-							echo "\n\t\t\t\t\t\t<hr size=\"2\" color=\"B0B0B0\">\n";
-							echo "\t\t\t\t\t\t<b><font color=\"515151\">Tables Found in DB: <a href=\"index.php?page=view_database&db={$_GET['db']}\" style=\"text-decoration:underline;\">{$_GET['db']}</a></font></b><br>\n";
-							echo "\t\t\t\t\t\t<hr size=\"2\" color=\"B0B0B0\">\n";
+							echo "\n\t\t\t\t\t\t<hr size=\"2\" color=\"#B0B0B0\">\n";
+							echo "\t\t\t\t\t\t<b><font color=\"#515151\">Tables Found in DB: <a href=\"index.php?page=view_database&db={$_GET['db']}\" style=\"text-decoration:underline;\">{$_GET['db']}</a></font></b><br>\n";
+							echo "\t\t\t\t\t\t<hr size=\"2\" color=\"#B0B0B0\">\n";
 
 							$tables = execute('show tables', array(
 								'db' => $_GET['db']

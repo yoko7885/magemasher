@@ -1,9 +1,11 @@
 <?php
 session_start();
 
-define ('VERSION', '1.0.0.0001');
+define ('VERSION', '1.0.0.0001'. date("YmdHis"));
 
 require_once('./modules/base.php');
+require_once('./modules/commons.php');
+require_once('./modules/myjson.php');
 
 require_once('./modules/utils.php');
 // echo utils::crypt('top');//KOdyhZFvN7g%3D

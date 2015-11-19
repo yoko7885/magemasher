@@ -36,11 +36,11 @@ include('./includes/header.php');
 	</tr>
 </table>
 <table width="100%" height="80%" cellspacing="3" cellpadding="5" align="center" border="0">
-	<tr bgcolor="EFEFEF">
+	<tr bgcolor="#EFEFEF">
 		<td valign="top">
 			<table width="100%" height="100%" cellspacing="0" cellpadding="3" border="0">
 				<tr>
-					<td width="150" valign="top" bgcolor="E5E5E5">
+					<td width="150" valign="top" bgcolor="#E5E5E5">
 						<?php include('./includes/left.php') ?>
 						</form>
 
@@ -57,11 +57,11 @@ include('./includes/header.php');
 						<br/></br/>
 						<table width="100%" cellpadding="3" cellspacing="1">
 							<tr>
-								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor=aeaeae>
+								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="#aeaeae">
 								</td>
 							</tr>
 							<tr>
-								<td align=center bgcolor=e1e1e1>
+								<td align=center bgcolor="#e1e1e1">
 									<b><a href="index.php?page=table_prop&db=<?php echo $_GET['db']; ?>&table=<?php echo $_GET['table']; ?>">Structure</a> &nbsp;&nbsp;&nbsp;&nbsp;
 									   <a href="index.php?page=table_edit&action=browse_table&db=<?php echo $_GET['db']; ?>&table=<?php echo $_GET['table']; ?>">Browse</a> &nbsp;&nbsp;&nbsp;&nbsp;
 									   <a href="index.php?page=search&db=<?php echo $_GET['db']; ?>&table=<?php echo $_GET['table']; ?>">Search</a> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -73,7 +73,7 @@ include('./includes/header.php');
 								</td>
 							</tr>
 							<tr>
-								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="aeaeae">
+								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="#aeaeae">
 								</td>
 							</tr>
 						</table>
@@ -101,12 +101,12 @@ include('./includes/header.php');
 							echo "\t\t\t\t\t\t\t\t<td><b>Value</b></td>\n";
 							echo "\t\t\t\t\t\t\t</tr>\n";
 							echo "\t\t\t\t\t\t\t<tr>\n";
-							echo "\t\t\t\t\t\t\t\t<td colspan=\"3\" style=\"padding-top:0;padding-bottom:0;height:1px;\" bgcolor=\"aeaeae\"></td>\n";
+							echo "\t\t\t\t\t\t\t\t<td colspan=\"3\" style=\"padding-top:0;padding-bottom:0;height:1px;\" bgcolor=\"#aeaeae\"></td>\n";
 							echo "\t\t\t\t\t\t\t</tr>\n";
 
 							foreach ( $row[0] as $key => $value )
 							{
-								echo "\t\t\t\t\t\t\t<tr valign=\"top\" bgcolor=\"".( $bgcolor = $bgcolor == 'E1E1E1' ? 'BFBFBF' : 'E1E1E1' )."\">\n";
+								echo "\t\t\t\t\t\t\t<tr valign=\"top\" bgcolor=\"".( $bgcolor = $bgcolor == '#E1E1E1' ? '#BFBFBF' : '#E1E1E1' )."\">\n";
 								echo "\t\t\t\t\t\t\t\t<td>> <a>$key</a></td>\n";
 								echo "\t\t\t\t\t\t\t\t<td>";
 
@@ -137,7 +137,7 @@ include('./includes/header.php');
 								if ( $cols[$key]['type'] == 'text' )
 								{
 									echo "<textarea style=\"overflow: auto\" name=\"values[$key]\" rows=\"8\" cols=\"65\"".( $cols[$key]['permanent'] == 1 ? ' disabled' : '' ).">";
-									echo htmlentities($value);
+									echo htmlentities($value,ENT_QUOTES, 'UTF-8');
 									echo "</textarea>";
 								}
 
@@ -167,7 +167,7 @@ include('./includes/header.php');
 
 								else
 								{
-									echo "<input name=\"values[$key]\" size=\"66\" type=\"text\" value=\"".htmlentities($value)."\"".( ( $cols[$key]['permanent'] == 1 || $cols[$key]['auto_increment'] == 1 ) ? ' disabled' : '' ).">";
+									echo "<input name=\"values[$key]\" size=\"66\" type=\"text\" value=\"".htmlentities($value,ENT_QUOTES, 'UTF-8')."\"".( ( $cols[$key]['permanent'] == 1 || $cols[$key]['auto_increment'] == 1 ) ? ' disabled' : '' ).">";
 								}
 
 								echo "</td>\n";

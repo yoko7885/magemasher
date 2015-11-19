@@ -9,44 +9,20 @@ class top extends base
     public function start()
     {
         $account_id = $_SESSION['MGM_ACCOUNT_ID'];
-        $user = $this->get_user($account_id)[0];
+        $user = commons::get_user($this->db, $account_id);
         
         $this->refresh_sch_pt($user);
         
         $smarty = $this->get_smarty();
         $smarty->assign('user', $user);
-    }
-
-    private function get_user($account_id)
-    {
-        $result = $this->db->select
-        (
-            array
-            (
-                'table' => 'user', 
-                'where' => array
-                (
-                    "account_id = \"{$account_id}\""
-                    , "and"
-                    , "invalid_flg != 1"
-                )
-            )
-        );
-        return $result;
+        
+        $fields = commons::get_fields($this->db);
+        $smarty->assign('fields', $fields);
     }
 
     private function refresh_sch_pt(&$user)
     {
-        $sch_pt = $this->user_db->select
-        (
-            array
-            (
-                'table' => 'sch_pt'
-            )
-        );
-
-        if (count($sch_pt) <= 0) return;
-        $sch_pt = $sch_pt[0];
+        $sch_pt = commons::get_sch_pt($this->user_db);
         $time_now = time();
 
         $diff = $time_now - $sch_pt['last'];

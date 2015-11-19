@@ -78,11 +78,11 @@ require('./includes/header.php');
 	</tr>
 </table>
 <table width="100%" height="80%" cellspacing="3" cellpadding="5" align="center" border="0">
-	<tr bgcolor="EFEFEF">
+	<tr bgcolor="#EFEFEF">
 		<td valign="top">
 			<table width="100%" height="100%" cellspacing="0" cellpadding="3" border="0">
 				<tr>
-					<td width="150" valign="top" bgcolor="E5E5E5">
+					<td width="150" valign="top" bgcolor="#E5E5E5">
 						<?php include('./includes/left.php') ?>
 						</form>
 
@@ -94,11 +94,11 @@ require('./includes/header.php');
 						<br/></br/>
 						<table width="100%" cellpadding="3" cellspacing="1">
 							<tr>
-								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor=aeaeae>
+								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="#aeaeae">
 								</td>
 							</tr>
 							<tr>
-								<td align=center bgcolor=e1e1e1>
+								<td align=center bgcolor="#e1e1e1">
 									<b><a href="index.php?page=table_prop&db=<?php echo $_GET['db']; ?>&table=<?php echo $_GET['table']; ?>">Structure</a> &nbsp;&nbsp;&nbsp;&nbsp;
 									   <a href="index.php?page=table_edit&action=browse_table&db=<?php echo $_GET['db']; ?>&table=<?php echo $_GET['table']; ?>">Browse</a> &nbsp;&nbsp;&nbsp;&nbsp;
 									   <a href="index.php?page=search&db=<?php echo $_GET['db']; ?>&table=<?php echo $_GET['table']; ?>">Search</a> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -110,7 +110,7 @@ require('./includes/header.php');
 								</td>
 							</tr>
 							<tr>
-								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="aeaeae">
+								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="#aeaeae">
 								</td>
 							</tr>
 						</table>
@@ -132,7 +132,7 @@ require('./includes/header.php');
 						echo "{$indent}\t<td><b>Value</b></td>\n";
 						echo "{$indent}</tr>\n";
 						echo "{$indent}<tr>\n";
-						echo "{$indent}\t<td colspan=\"6\" style=\"padding-top:0;padding-bottom:0;height:1px;\" bgcolor=\"aeaeae\">\n";
+						echo "{$indent}\t<td colspan=\"6\" style=\"padding-top:0;padding-bottom:0;height:1px;\" bgcolor=\"#aeaeae\">\n";
 						echo "{$indent}\t</td>\n";
 						echo "{$indent}</tr>\n";
 
@@ -146,7 +146,7 @@ require('./includes/header.php');
 									$value['max'] = '';
 								}
 
-								echo "{$indent}<tr bgcolor=\"#".( $bgcolor = $bgcolor == 'E1E1E1' ? 'BFBFBF' : 'E1E1E1' )."\">\n";
+								echo "{$indent}<tr bgcolor=\"".( $bgcolor = $bgcolor == '#E1E1E1' ? '#BFBFBF' : '#E1E1E1' )."\">\n";
 								echo "{$indent}\t<td align=\"center\">";
 								echo "<select class=\"sel\" name=\"search[{$c}][logOP]\"".( key($cols) == 'primary' ? ' disabled' : '' )."><option value=\"\"></option><option value=\"AND\">and</option><option value=\"OR\">or</option><option value=\"XOR\">xor</option></select>";
 								echo "</td>\n";

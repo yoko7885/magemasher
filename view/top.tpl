@@ -11,41 +11,23 @@
     <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
       <!-- Indicators -->
       <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
+        {foreach from=$fields key=k item=v}
+        <li data-target="#myCarousel" data-slide-to="{$k}" class="active"></li>
+        {/foreach}
       </ol>
       <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <img class="first-slide" src="./materials/field1.jpg" alt="First slide">
+        {foreach from=$fields key=key item=val}
+        <div class="item{if $key==0} active{/if}">
+          <img class="" src="{$val.field_image}" alt="{$val.field_name}">
           <div class="container">
             <div class="carousel-caption">
-              <h1>アイウエオ草原</h1>
-              <p>あいうえおかきくけこさしすせそたちつてと。わをんらりるれろ。</p>
-              <p><a class="btn btn-lg btn-primary" id="do_search" role="button">探索</a></p>
+              <h1>{$val.field_name}</h1>
+              <p>{$val.field_comment}</p>
+              <p><a class="btn btn-lg btn-primary do_search" field_id="{$val.field_id}" role="button">探索</a></p>
             </div>
           </div>
         </div>
-        <div class="item">
-          <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>One more for good measure.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-            </div>
-          </div>
-        </div>
+        {/foreach}
       </div>
       <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -106,7 +88,9 @@
               </div>
               <div class="form-group">
                 <label class="col-sm-4">Search Pt</label>
-                <div class="col-sm-8">{$user.now_pt} pt / {$user.sch_pt} pt</div>
+                <div class="col-sm-8">
+                  <label id="sch_now_pt">{$user.now_pt}</label> pt / 
+                  <label id="sch_max_pt">{$user.sch_pt}</label> pt</div>
               </div>
               <div class="form-group">
                 <label class="col-sm-4">Attack</label>

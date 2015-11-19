@@ -1,5 +1,6 @@
 <?php
 // Load up our configuration settings and start up the txtSQL service
+header('Content-Type: text/html; charset:utf-8');
 include('./config.php');
 
 $_GET['action'] = isset($_GET['action']) ? $_GET['action'] : '';
@@ -92,7 +93,7 @@ require('./includes/header.php');
 <br/>
 <br/>
 <br/>
-<table width="350" cellspacing="0" cellpadding="0" border="1" bordercolor="AFB0B2" align="center">
+<table width="350" cellspacing="0" cellpadding="0" border="1" bordercolor="#AFB0B2" align="center">
 	<tr>
 		<td>
 			<table width="100%" cellspacing="2" cellpadding="0" border="0">
@@ -102,7 +103,7 @@ require('./includes/header.php');
 					</td>
 				</tr>
 				<tr>
-					<td bgcolor="EFEFEF" height="125" valign="middle" align="center">
+					<td bgcolor="#EFEFEF" height="125" valign="middle" align="center">
 						<?php echo $error; ?>
 						<br />
 						<table cellspacing="0" cellpadding="3" align="center">

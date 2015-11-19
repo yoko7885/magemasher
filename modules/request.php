@@ -10,28 +10,107 @@ class request extends base
     
     public function search()
     {
-        $result = '1';
         $smarty = $this->get_smarty();
         $smarty->assign('callback', $_REQUEST['callback']);
-        $smarty->assign('json', json_encode($result));
-    }
+        
+        $sch_pt = commons::get_sch_pt($this->user_db);
+        $now = $sch_pt['now'];
 
-    private function get_user($account_id)
+        $field_id = $_REQUEST['field_id'];
+        $field = commons::get_fields($this->db, $field_id);
+
+        $json = new myjson();
+        if ($now < $field['need_sch_pt'])
+        {
+            $message = 'search pt が不足しています。';
+            $json->set('code','2')->set('message', $message);
+        }
+        else
+        {
+            $item = $this->get_searched_item();
+            $this->update_user($field, $item, $now);
+            
+            $json->set('code','1')->set('item', $item)->set('now', $now);
+        }
+        $smarty->assign('json', $json->get());
+    }
+    
+    private function update_user($field, $item, &$now)
     {
-        $result = $this->db->select
+        $need_sch_pt = $field['need_sch_pt'];
+        $now = $now - $need_sch_pt;
+
+        $values = array
+        (
+            'now' => (String)$now
+        );
+
+        $result = $this->user_db->update
         (
             array
             (
-                'table' => 'user', 
-                'where' => array
-                (
-                    "account_id = \"{$account_id}\""
-                    , "and"
-                    , "invalid_flg != 1"
-                )
+                'table' => 'sch_pt'
+                , 'where' => array('last >= 0')
+                , 'values' => $values
             )
         );
-        return $result;
+        if (!$result)
+        {
+            die('An error occurred, txtSQL said: '.$this->user_db->get_last_error());
+        }
+        
+        $result = $this->user_db->insert
+        (
+            array
+            (
+                'table' => 'bag'
+                , 'values' => $item
+            )
+        );
+        if (!$result)
+        {
+            die('An error occurred, txtSQL said: '.$this->user_db->get_last_error());
+        }
+    }
+
+    private function get_searched_item()
+    {
+        $sch_data = $this->db->select
+        (
+            array
+            (
+                'table' => 'sch_itm_base_field1'
+            )
+        );
+        
+        $sum_coefficient = 0;
+        
+        foreach($sch_data as &$item)
+        {
+            $item['coefficient']
+                = ((100-$item['scarcity'])*10)
+                + ((100-$item['size']))
+                - ($item['holy']) - ($item['wicked']);
+                
+            $sum_coefficient += $item['coefficient'];
+        }
+        
+        $last_rate = 0;
+        mt_srand();
+        $rand_result = mt_rand(0, 100000);
+        
+        foreach($sch_data as &$item)
+        {
+            $now_rate = $item['coefficient'] / $sum_coefficient * 100000;
+            $next_rate = $last_rate + $now_rate;
+            unset($item['coefficient']);
+            
+            if ($last_rate < $rand_result && $rand_result <= $next_rate)
+            {
+                return $item;
+            }
+            $last_rate = $next_rate;
+        }
     }
 
     private function refresh_sch_pt(&$user)

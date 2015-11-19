@@ -35,11 +35,11 @@ require('./includes/header.php');
 	</tr>
 </table>
 <table width="100%" height="80%" cellspacing="3" cellpadding="5" align="center" border="0">
-	<tr bgcolor="EFEFEF">
+	<tr bgcolor="#EFEFEF">
 		<td valign="top">
 			<table width="100%" height="100%" cellspacing="0" cellpadding="3" border="0">
 				<tr>
-					<td width="150" valign="top" bgcolor="E5E5E5">
+					<td width="150" valign="top" bgcolor="#E5E5E5">
 						<?php include('./includes/left.php') ?>
 						</form>
 
@@ -61,15 +61,15 @@ require('./includes/header.php');
 						if ( empty($users) )
 						{
 							echo "{$indent}<tr>\n";
-							echo "{$indent}\t<td style=\"padding-top:0;padding-bottom:0;height:1px;\" bgcolor=\"AEAEAE\" colspan=\"2\">\n";
+							echo "{$indent}\t<td style=\"padding-top:0;padding-bottom:0;height:1px;\" bgcolor=\"#AEAEAE\" colspan=\"2\">\n";
 							echo "{$indent}\t</td>\n";
 							echo "{$indent}</tr>\n";
-							echo "{$indent}<tr bgcolor=\"E1E1E1\">\n";
+							echo "{$indent}<tr bgcolor=\"#E1E1E1\">\n";
 							echo "{$indent}\t<td align=\"center\">";
 							echo "<b>No Users Found!</b></td>\n";
 							echo "{$indent}</tr>\n";
 							echo "{$indent}<tr>\n";
-							echo "{$indent}\t<td style=\"padding-top:0;padding-bottom:0;height:1px;\" bgcolor=\"AEAEAE\" colspan=\"2\">\n";
+							echo "{$indent}\t<td style=\"padding-top:0;padding-bottom:0;height:1px;\" bgcolor=\"#AEAEAE\" colspan=\"2\">\n";
 							echo "{$indent}\t</td>\n";
 							echo "{$indent}</tr>\n";
 						}
@@ -80,7 +80,7 @@ require('./includes/header.php');
 							echo "{$indent}\t<td align=\"center\"><b>Username</b></td>\n";
 							echo "{$indent}</tr>\n";
 							echo "{$indent}<tr>\n";
-							echo "{$indent}\t<td style=\"padding-top:0;padding-bottom:0;height:1px;\" bgcolor=\"AEAEAE\" colspan=\"3\">\n";
+							echo "{$indent}\t<td style=\"padding-top:0;padding-bottom:0;height:1px;\" bgcolor=\"#AEAEAE\" colspan=\"3\">\n";
 							echo "{$indent}\t</td>\n";
 							echo "{$indent}</tr>\n";
 
@@ -90,7 +90,7 @@ require('./includes/header.php');
 								$link_drop  = ( $_SESSION['txtsqladmin']['username'] == $value ) ? '' : '<a href="javascript: getPassForUserDrop(\''.$value.'\');">';
 								$link_dropA = !empty($link_drop) ? '</a>' : '';
 
-								echo "{$indent}<tr bgcolor=\"".( $bgcolor = $bgcolor == 'E1E1E1' ? 'BFBFBF' : 'E1E1E1' )."\">\n";
+								echo "{$indent}<tr bgcolor=\"".( $bgcolor = $bgcolor == '#E1E1E1' ? '#BFBFBF' : '#E1E1E1' )."\">\n";
 								echo "{$indent}\t<td align=\"center\" width=\"10\"><a href=\"{$link}\"><img src=\"images/small_edit.png\" alt=\"Edit user: {$value}\" border=\"0\"></a></td>\n";
 								echo "{$indent}\t<td align=\"center\" width=\"10\">{$link_drop}<img src=\"images/small_".( $_SESSION['txtsqladmin']['username'] == $value ? 'no' : '' )."drop.gif\" alt=\"Drop user: {$value}\" border=\"0\">{$link_dropA}</td>\n";
 								echo "{$indent}\t<td width=\"\"> > {$value}</td>\n";
@@ -100,7 +100,7 @@ require('./includes/header.php');
 						?>
 						</table>
 						<br><br>
-						<hr size="2" color="B0B0B0" width="80%" align="left">
+						<hr size="2" color="#B0B0B0" width="80%" align="left">
 						<input type="hidden" name="page" value="create_table">
 						<input type="hidden" name="db" value="TestDatabase">
 

@@ -66,11 +66,11 @@ include('./includes/header.php');
 	</tr>
 </table>
 <table width="100%" height="80%" cellspacing="3" cellpadding="5" align="center" border="0">
-	<tr bgcolor="EFEFEF">
+	<tr bgcolor="#EFEFEF">
 		<td valign="top">
 			<table width="100%" height="100%" cellspacing="0" cellpadding="3" border="0">
 				<tr>
-					<td width="150" valign="top" bgcolor="E5E5E5">
+					<td width="150" valign="top" bgcolor="#E5E5E5">
 						<?php include('./includes/left.php') ?>
 						</form>
 
@@ -86,11 +86,11 @@ include('./includes/header.php');
 						<br/></br/>
 						<table width="100%" cellpadding="3" cellspacing="1">
 							<tr>
-								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor=aeaeae>
+								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="#aeaeae">
 								</td>
 							</tr>
 							<tr>
-								<td align=center bgcolor=e1e1e1>
+								<td align=center bgcolor="#e1e1e1">
 									<b><a href="index.php?page=table_prop&db=<?php echo $_GET['db']; ?>&table=<?php echo $_GET['table']; ?>">Structure</a> &nbsp;&nbsp;&nbsp;&nbsp;
 									   <a href="index.php?page=table_edit&action=browse_table&db=<?php echo $_GET['db']; ?>&table=<?php echo $_GET['table']; ?>">Browse</a> &nbsp;&nbsp;&nbsp;&nbsp;
 									   <a href="index.php?page=search&db=<?php echo $_GET['db']; ?>&table=<?php echo $_GET['table']; ?>">Search</a> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -102,7 +102,7 @@ include('./includes/header.php');
 								</td>
 							</tr>
 							<tr>
-								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="aeaeae">
+								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="#aeaeae">
 								</td>
 							</tr>
 						</table>
@@ -119,12 +119,12 @@ include('./includes/header.php');
 								<td colspan="3"><b>Action</b></td>
 							</tr>
 							<tr>
-								<td colspan="9" style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="aeaeae">
+								<td colspan="9" style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="#aeaeae">
 								</td>
 							</tr><?php
 							echo "\n";
 
-							$bgcolor = 'BFBFBF';
+							$bgcolor = '#BFBFBF';
 							$columns =
 							execute('describe', array(
 								'db'    => $_GET['db'],
@@ -152,7 +152,7 @@ include('./includes/header.php');
 										$key .= $name.'</font></u>';
 									}
 
-									echo "\t\t\t\t\t\t\t<tr align=\"center\" bgcolor=\"#".( $bgcolor = $bgcolor === 'BFBFBF' ? 'E1E1E1' : 'BFBFBF' )."\">\n";
+									echo "\t\t\t\t\t\t\t<tr align=\"center\" bgcolor=\"".( $bgcolor = $bgcolor === '#BFBFBF' ? '#E1E1E1' : '#BFBFBF' )."\">\n";
 									echo "\t\t\t\t\t\t\t\t<td align=\"left\"><b>> $key</b></td>\n";
 									echo "\t\t\t\t\t\t\t\t<td>$max</td></td>\n";
 									echo "\t\t\t\t\t\t\t\t<td>$default</td>\n";

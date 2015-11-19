@@ -86,11 +86,11 @@ elseif ( $sql->table_exists($_GET['table'], $_GET['db']) )
 	</tr>
 </table>
 <table width="100%" height="80%" cellspacing="3" cellpadding="5" align="center" border="0">
-	<tr bgcolor="EFEFEF">
+	<tr bgcolor="#EFEFEF">
 		<td valign="top">
 			<table width="100%" height="100%" cellspacing="0" cellpadding="3" border="0">
 				<tr>
-					<td width="150" valign="top" bgcolor="E5E5E5">
+					<td width="150" valign="top" bgcolor="#E5E5E5">
 						<?php include('./includes/left.php') ?>
 						</form>
 
@@ -104,11 +104,11 @@ elseif ( $sql->table_exists($_GET['table'], $_GET['db']) )
 						<br/></br/>
 						<table width="100%" cellpadding="3" cellspacing="1">
 							<tr>
-								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor=aeaeae>
+								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="#aeaeae">
 								</td>
 							</tr>
 							<tr>
-								<td align=center bgcolor=e1e1e1>
+								<td align=center bgcolor="#e1e1e1">
 									<b><a href="index.php?page=view_databases&db=<?php echo $_GET['db']; ?>&action=create_database">Create DB</a> &nbsp;&nbsp;&nbsp;&nbsp;
 									   <a href="index.php?page=view_database&db=<?php echo $_GET['db']; ?>&action=create_table">Create Table</a> &nbsp;&nbsp;&nbsp;&nbsp;
 									   <a href="javascript:drop_db('<?php echo $_GET['db']; ?>')">Drop DB</a> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -119,7 +119,7 @@ elseif ( $sql->table_exists($_GET['table'], $_GET['db']) )
 								</td>
 							</tr>
 							<tr>
-								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="aeaeae">
+								<td style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="#aeaeae">
 								</td>
 							</tr>
 						</table>
@@ -136,16 +136,16 @@ elseif ( $sql->table_exists($_GET['table'], $_GET['db']) )
 								<td><b>Permanent</b></td>
 							</tr>
 							<tr>
-								<td colspan="7" style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="aeaeae">
+								<td colspan="7" style="padding-top:0;padding-bottom:0;height:1px;" bgcolor="#aeaeae">
 								</td>
 							</tr><?php
 							echo "\n";
 
-							$bg             = 'BFBFBF';
+							$bg             = '#BFBFBF';
 							$colTypesSelect = '<option value="string">String<option value="text">Text<option value="int">Integer<option value="bool">Boolean<option value="enum">ENUM<option value="date">Date';
 							for ( $i = 0; $i < $_GET['columns']; $i++ )
 							{
-								echo "\t\t\t\t\t\t\t<tr align=\"center\" bgcolor=\"#".( $bg = ( $bg == 'E1E1E1' ) ? 'BFBFBF' : 'E1E1E1' )."\">\n";
+								echo "\t\t\t\t\t\t\t<tr align=\"center\" bgcolor=\"".( $bg = ( $bg == '#E1E1E1' ) ? '#BFBFBF' : '#E1E1E1' )."\">\n";
 								echo "\t\t\t\t\t\t\t\t<td><input type=\"radio\" name=\"primary\" value=\"".( $i + 1 )."\" style=\"background-color: #$bg; border:0px solid;\"></td>\n";
 								echo "\t\t\t\t\t\t\t\t<td><input type=\"text\" size=\"15\" name=\"cols[$i][name]\" tabindex=\"".( $i + 1 )."\"></td>\n";
 								echo "\t\t\t\t\t\t\t\t<td><input type=\"text\" size=\"15\" name=\"cols[$i][max]\"></td>\n";

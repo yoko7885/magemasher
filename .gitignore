@@ -1,5 +1,7 @@
 log/
 temp/
+materials/
 data/magemasher/*.MYD
 data/account_3/*.MYD
 memo.txt
+work.php
