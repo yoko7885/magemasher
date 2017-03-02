@@ -19,7 +19,7 @@
 *-----------------------------------------------------------------------*
 *  NOTE- Tab size in this file: 8 spaces/tab                            *
 *-----------------------------------------------------------------------*
-*  ©2003 Faraz Ali, ChibiGuy Production [http://txtsql.sourceforge.net] *
+*  ï¿½2003 Faraz Ali, ChibiGuy Production [http://txtsql.sourceforge.net] *
 *  File: txtSQL.class.php                                               *
 ************************************************************************/
 
@@ -28,6 +28,8 @@ array_map('defineConstant', array('TXTSQL_CORE_PATH',
 
 require_once(TXTSQL_CORE_PATH   . '/txtSQL.core.php');
 require_once(TXTSQL_PARSER_PATH . '/txtSQL.parser.php');
+
+function session_register($var) { $_SESSION[$var] = ""; }
 
 /**
  * Extracts data from a flatfile database via a limited SQL

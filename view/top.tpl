@@ -5,7 +5,7 @@
 <!-- NAVBAR
 ================================================== -->
   <body>
-
+    <div id="loading_small" style="display: none;"><img src="./materials/load.gif"></div>
     <!-- Carousel
     ================================================== -->
     <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
@@ -107,6 +107,8 @@
           </div>
         </div>
       </div>
+      <p><a class="btn btn-lg btn-primary update_bag" role="button">更新</a></p>
+      <div class="row" id="bag"></div>
 
       <!-- /END THE FEATURETTES -->
 
@@ -117,6 +119,6 @@
 
     </div><!-- /.container -->
     {include file='../view/footer.tpl'}
-    <script src="./js/top.js"></script>
+    <script src="./js/top.js?ver={$smarty.const.VERSION}"></script>
   </body>
 </html>

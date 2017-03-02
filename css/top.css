@@ -5,6 +5,7 @@
 body {
   padding-bottom: 40px;
   color: #5a5a5a;
+  font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,"游ゴシック",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ",Meiryo,sans-serif;
 }
 
 
@@ -210,4 +211,68 @@ body {
     padding-right: 0;
     padding-left: 0;
   }
+}
+
+#bag > .col-md-2
+{
+  padding: 0px 5px 0px 5px;
+}
+#bag > .col-md-2 > .panel
+{
+  border-radius: 15px;
+}
+#bag > .col-md-2 > .panel > .panel-heading
+{
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.panel.bag_item
+{
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.panel.bag_item > .panel-heading
+{
+  padding: 5px;
+}
+
+.panel.bag_item > .panel-body
+{
+  padding: 5px 5px 5px 10px;
+  text-align: center;
+}
+
+.panel.bag_item > .panel-body > h3.panel-title
+{
+  font-size: 14px;
+}
+
+.panel.bag_item.active > i.fa
+{
+    line-height: 2px;
+    display: block;
+    position: absolute;
+    top: 19px;
+    left: 10px;
+}
+
+.panel.bag_item > i.fa
+{
+    display: none;
+}
+
+.panel.bag_item.active > .panel-body > h3.panel-title
+{
+    font-weight: bold;
+    color: #a94442;
+}
+
+#loading_small
+{
+  position: fixed;
+  left: 10px;
+  top: 410px;
+  z-index: 9999;
 }

@@ -67,6 +67,26 @@ function removeSlashes ( &$array )
 	return $array;
 }
 
+function addQuotes ( &$array )
+{
+	foreach ( $array as $key => $value )
+	{
+		if ( is_array($value) )
+		{
+			addQuotes($value);
+		}
+		elseif ( is_string($value) )
+		{
+			if (strlen($value) != mb_strlen($value, 'utf8'))
+			{
+				$array[$key] = "\"".$value."\"";
+			}
+		}
+	}
+
+	return $array;
+}
+
 // Cuts a string off at $maxlength
 function cutString ( $string, $maxlength )
 {

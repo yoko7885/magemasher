@@ -13,7 +13,7 @@ if ( $_GET['finish'] == 1 )
 		'db'     => $_GET['db'],
 		'table'  => $_GET['table'],
 		'where'  => unserialize($_POST['whereClause']),
-		'values' => removeSlashes($_POST['values']),
+		'values' => addQuotes(removeSlashes($_POST['values'])),
 		'limit'  => array(1)
 	));
 

@@ -1,7 +1,10 @@
+/* global $ location bootbox navigator */
 $(function()
 {
 
 });
+
+window.MageMasher = {};
 
 var ua = navigator.userAgent;
 if (ua.indexOf('iPhone') > 0
@@ -37,7 +40,7 @@ $.extend({
                 v = obj[n];
                 t = typeof(v);
                 if (obj.hasOwnProperty(n)) {
-                    if (t == "string") v = '"' + v + '"'; else if (t == "object" && v !== null) v = jQuery.stringify(v);
+                    if (t == "string") v = '"' + v + '"'; else if (t == "object" && v !== null) v = $.stringify(v);
                     json.push((arr ? "" : '"' + n + '":') + String(v));
                 }
             }

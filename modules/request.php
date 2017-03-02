@@ -35,6 +35,30 @@ class request extends base
         $smarty->assign('json', $json->get());
     }
     
+    public function get_bag()
+    {
+        $smarty = $this->get_smarty();
+        $smarty->assign('callback', $_REQUEST['callback']);
+        
+        $bag = commons::get_bag($this->user_db, array('org_field_id','desc'));
+        $bag = $this->edit_bag($bag);
+
+        $json = new myjson();
+        $json->set('bag', $bag);
+        $smarty->assign('json', $json->get());
+    }
+    
+    private function edit_bag($bag)
+    {
+        foreach($bag as &$item)
+        {
+            $colors = commons::get_item_color($item, false);
+            $item['color_l'] = $colors['light'];
+            $item['color_d'] = $colors['dark'];
+        }
+        return $bag;
+    }
+    
     private function update_user($field, $item, &$now)
     {
         $need_sch_pt = $field['need_sch_pt'];
@@ -58,6 +82,9 @@ class request extends base
         {
             die('An error occurred, txtSQL said: '.$this->user_db->get_last_error());
         }
+        
+        $item['org_field_id'] = $field['field_id'];
+        $item['org_item_pkey'] = $item['p_key'];
         
         $result = $this->user_db->insert
         (

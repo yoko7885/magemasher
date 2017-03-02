@@ -6,4 +6,6 @@
 <script src="./js/bootbox.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="./js/ie10-viewport-bug-workaround.js"></script>
-<script src="./js/main.js"></script>
+<script src="./js/main.js?ver={$smarty.const.VERSION}"></script>
+
+<script src="./js/jquery-ui.min.js"></script>
