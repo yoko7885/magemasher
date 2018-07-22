@@ -39,6 +39,7 @@
       </a>
     </div><!-- /.carousel -->
 
+    {**
     <div class="masthead">
       <nav>
         <ul class="nav nav-justified">
@@ -51,6 +52,7 @@
         </ul>
       </nav>
     </div>
+    **}
 
     <!-- Marketing messaging and featurettes
     ================================================== -->
@@ -60,13 +62,22 @@
 
 
       <div class="row featurette">
-        <div class="col-md-7">
+        <div class="col-md-4">
           <!--<div class="col-lg-4">-->
           <!--  <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">-->
           <!--  <h2>Heading</h2>-->
           <!--</div>-->
-          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+          <h2 class="featurette-heading" style="margin-top:30px;">アイテムの加工 <span class="text-muted">It'll blow your mind.</span></h2>
           <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-3" style="margin-top:50px;">
+          {section name=j start=1 loop=8}
+          <div class="composit-working-area">
+            {section name=i start=1 loop=8}
+              <div id="composit-item-{$smarty.section.j.index}-{$smarty.section.i.index}"></div>
+            {/section}
+          </div>
+          {/section}
         </div>
         <div class="col-md-5">
           <div class="featurette-well center-block well form-horizontal">

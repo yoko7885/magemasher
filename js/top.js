@@ -5,7 +5,34 @@ var me = MageMasher.Top =
 	{
 		$('a.do_search').click(me.do_search);
 		$('a.update_bag').click(me.update_bag);
-		
+		$('div.composit-working-area > div').droppable(
+		{
+			classes:
+			{
+				// "ui-droppable-hover": "ui-state-hover"
+			}
+			, over: function( event, ui )
+			{
+				var composit_panel = $(this);
+				composit_panel.css("background-color", "#ddd");
+			}
+			, out: function( event, ui )
+			{
+				var composit_panel = $(this);
+				composit_panel.css("background-color", "inherit");
+			}
+			, drop: function( event, ui )
+			{
+				var composit_panel = $(this);
+				var composit_item = $(ui.draggable);
+				
+				var composit_panel_color = composit_item.children("div.panel-heading").css("background-image"); 
+				composit_panel.css("background-image", composit_panel_color);
+				
+				composit_item.addClass("active");
+			}
+		});
+ 
 		me.update_bag();
 	}
 	
@@ -45,12 +72,19 @@ var me = MageMasher.Top =
 		    	$("#bag").append(base_panel);
 	    	});
 	    	$("div.bag_item").click(me.item_click);
+	    	$("div.bag_item").draggable({
+				containment: 'document',
+				cursor: 'move',
+				helper: 'original',
+				opacity: 0.5,
+				revert: true
+			});
 	    });
 	}
 	
 	, item_click : function()
 	{
-		$(this).addClass("active");
+		// $(this).addClass("active");
 	}
 	
 	, do_search : function()
