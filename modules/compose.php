@@ -1,5 +1,5 @@
 <?php
-class top extends base
+class compose extends base
 {
     public function __construct()
     {

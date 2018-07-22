@@ -28,7 +28,7 @@ class signin extends base
         }
         $_SESSION['MGM_ACCOUNT_ID'] = $account[0]['account_id'];
         
-        $this->next_access = utils::crypt('top');
+        $this->next_access = utils::crypt('compose');
         $this->next_method = null;
     }
     

@@ -1,0 +1,30 @@
+div.composit-working-area
+{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+div.composit-working-area > div
+{
+  float: left;
+  margin: -2px 0px 1px -1px;
+  border-style: dotted;
+  border-width: 1px;
+  width: 35px;
+  height: 35px;
+}
+div.composit-working-area:before
+{
+  display: table;
+  content: " ";
+}
+div.composit-working-area:after
+{
+  clear: both;
+  display: table;
+  content: " ";
+}
+div.composit-working-area > div.ui-droppable-hover
+{
+  /*background-color:red;*/
+}

@@ -24,9 +24,20 @@
 <![endif]-->
 
 <link rel="stylesheet" href="./css/font-awesome.min.css">
-
 <link rel="stylesheet" href="./css/jquery-ui.min.css">
 <link rel="stylesheet" href="./css/jquery-ui.structure.min.css">
 <link rel="stylesheet" href="./css/jquery-ui.theme.min.css">
+<link href="./css/main.css?ver={$smarty.const.VERSION}" rel="stylesheet">
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/bootbox.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="./js/ie10-viewport-bug-workaround.js"></script>
+<script src="./js/main.js?ver={$smarty.const.VERSION}"></script>
+
+<script src="./js/jquery-ui.min.js"></script>
 
 </head>

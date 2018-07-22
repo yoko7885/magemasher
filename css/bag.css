@@ -1,0 +1,59 @@
+#bag > .col-md-2
+{
+  padding: 0px 5px 0px 5px;
+}
+#bag > .col-md-2 > .panel
+{
+  border-radius: 15px;
+}
+#bag > .col-md-2 > .panel > .panel-heading
+{
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.bag_item_div
+{
+  margin-right: 10px;
+  float: left;
+  width: 150px;
+}
+.panel.bag_item
+{
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.panel.bag_item > .panel-heading
+{
+  padding: 5px;
+}
+
+.panel.bag_item > .panel-body
+{
+  padding: 5px 5px 5px 10px;
+  text-align: center;
+}
+
+.panel.bag_item > .panel-body > h3.panel-title
+{
+  font-size: 14px;
+}
+
+.panel.bag_item.active > i.fa
+{
+    line-height: 0px;
+    display: block;
+    margin-left: 2px;
+    margin-top: 0px;
+}
+
+.panel.bag_item > i.fa
+{
+    display: none;
+}
+
+.panel.bag_item.active > .panel-body > h3.panel-title
+{
+    font-weight: bold;
+    color: #a94442;
+}
