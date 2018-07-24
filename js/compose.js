@@ -27,6 +27,13 @@ var compose = MageMasher.Compose =
 	
 	, compose_click : function()
 	{
+		var targets = [];
+		$.each($("div.bag_item.active"), function()
+		{
+			targets.push($(this).attr("p_key"));
+		});
+		$("input[name='targets']").val(JSON.stringify(targets));
+		$("input[name='do']").val("nL22iVrrHwE%3D");
 		$("#form_compose").submit();
 	}
 };

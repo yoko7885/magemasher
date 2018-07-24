@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  {include file='../view/header.tpl'}
+  {include file="../../view/header.tpl"}
   <link href="./css/signin.css?ver={$smarty.const.VERSION}" rel="stylesheet">
   <body>
 
@@ -27,6 +27,6 @@
       {/if}
 
     </div> <!-- /container -->
-    {include file='../view/footer.tpl'}
+    {include file='../../view/footer.tpl'}
   </body>
 </html>

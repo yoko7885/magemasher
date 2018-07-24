@@ -80,6 +80,24 @@ class commons
         return $result;
     }
     
+    public static function get_bag_one($db, $pkey)
+    {
+        $where = array();
+        $where[] = "p_key = \"{$pkey}\"";
+        
+        $result = $db->select
+        (
+            array
+            (
+                'table' => 'bag', 
+                'where' => $where
+            )
+        );
+        if (count($result) > 0) $result = $result[0];
+        return $result;
+
+    }
+
     public static function get_item_color($item, $need_sharp = true)
     {
         $r = 0; $g = 0; $b = 0;

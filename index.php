@@ -16,6 +16,8 @@ define ('TXTSQL_CORE_PATH', './modules/');
 define ('TXTSQL_PARSER_PATH', './modules/');
 require_once('./modules/txtSQL.class.php');
 
+define ('ROOT_PATH', dirname(__FILE__));
+
 $loopcnt = 0;
 
 do
@@ -51,8 +53,19 @@ do
 }
 while(1);
 
-$v_file = './view/'.$name.'.tpl';
-if (file_exists($v_file))
+$v_file = null;
+if (file_exists('./view/'.$name.'/'.$do.'.tpl'))
+{
+    $v_file = './view/'.$name.'/'.$do.'.tpl';
+}
+else
+{
+    if (file_exists('./view/'.$name.'/index.tpl'))
+    {
+        $v_file = './view/'.$name.'/index.tpl';
+    }
+}
+if ($v_file)
 {
     if ($smarty)
     {

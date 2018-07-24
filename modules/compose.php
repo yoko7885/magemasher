@@ -8,12 +8,14 @@ class compose extends base
     
     public function start()
     {
+        $smarty = $this->get_smarty();
+        $smarty->assign('as', utils::crypt('compose'));
+        $smarty->assign('do', utils::crypt('start'));
+        
         $account_id = $_SESSION['MGM_ACCOUNT_ID'];
         $user = commons::get_user($this->db, $account_id);
         
         $this->refresh_sch_pt($user);
-        
-        $smarty = $this->get_smarty();
         $smarty->assign('user', $user);
         
         $fields = commons::get_fields($this->db);
@@ -56,6 +58,172 @@ class compose extends base
         }
         
         $user['now_pt'] = $sum;
+    }
+    
+    public function execute()
+    {
+        $smarty = $this->get_smarty();
+        $smarty->assign('as', utils::crypt('compose'));
+        $smarty->assign('do', utils::crypt('complete'));
+        
+        $smarty->assign('targets', $_REQUEST["targets"]);
+        $lists = json_decode($_REQUEST["targets"], true);
+        
+        $sum_value = $this->get_item_array();
+        $item_count = count($lists);
+        
+        foreach($lists as $i => $value)
+        {
+            $lists[$i] = commons::get_bag_one($this->user_db, $value);
+            $colors = commons::get_item_color($lists[$i], false);
+            $lists[$i]['color_l'] = $colors['light'];
+            $lists[$i]['color_d'] = $colors['dark'];
+            
+            $sum_value = $this->sum_item_array($sum_value, $lists[$i]);
+        }
+        // 平均値
+        $average_value = $this->average_item_array($sum_value, $item_count);
+        // 通常アイテム
+        $normal_value = $this->normal_item_array($average_value);
+        // 神聖アイテム
+        $holy_value = $this->holy_item_array($average_value);
+        // 邪悪アイテム
+        $dark_value = $this->dark_item_array($average_value);
+        // 超アイテム
+        $super_value = $this->super_item_array($average_value);
+        
+        mt_srand();
+        $rand_result = mt_rand(0, 100);
+        if ($rand_result <= ($average_value['holy'])) $holy = true;
+        mt_srand();
+        $rand_result = mt_rand(0, 100);
+        if ($rand_result <= ($average_value['wicked'])) $wicked = true;
+        mt_srand();
+        $rand_result = mt_rand(0, 200);
+        if ($rand_result <= ($average_value['holy'] + $average_value['wicked'])) $super = true;
+        
+        $result = array();
+        if ($holy) $result[] = $holy_value;
+        if ($wicked) $result[] = $dark_value;
+        if ($super) $result[] = $super_value;
+        if (count($result) > 0)
+        {
+            mt_srand();
+            $rand_result = mt_rand(0, count($result) - 1);
+            $result = $result[$rand_result];
+        }
+        else
+        {
+            $result = $normal_value;
+        }
+        
+        $smarty->assign('lists', $lists);
+    }
+    
+    private function get_item_array()
+    {
+        $value = array();
+        $value["scarcity"] = 0;
+        $value["rigidity"] = 0;
+        $value["size"] = 0;
+        $value["weight"] = 0;
+        $value["toxicity"] = 0;
+        $value["naturally"] = 0;
+        $value["edibility"] = 0;
+        $value["animality"] = 0;
+        $value["holy"] = 0;
+        $value["wicked"] = 0;
+        return $value;
+    }
+    
+    private function sum_item_array($to, $from)
+    {
+        $to["scarcity"] += $from["scarcity"];
+        $to["rigidity"] += $from["rigidity"];
+        $to["size"] += $from["size"];
+        $to["weight"] += $from["weight"];
+        $to["toxicity"] += $from["toxicity"];
+        $to["naturally"] += $from["naturally"];
+        $to["edibility"] += $from["edibility"];
+        $to["animality"] += $from["animality"];
+        $to["holy"] += $from["holy"];
+        $to["wicked"] += $from["wicked"];
+        return $to;
+    }
+    
+    private function average_item_array($item, $count)
+    {
+        $item["scarcity"] = $item["scarcity"] / $count;
+        $item["rigidity"] = $item["rigidity"] / $count;
+        $item["size"] = $item["size"] / $count;
+        $item["weight"] = $item["weight"] / $count;
+        $item["toxicity"] = $item["toxicity"] / $count;
+        $item["naturally"] = $item["naturally"] / $count;
+        $item["edibility"] = $item["edibility"] / $count;
+        $item["animality"] = $item["animality"] / $count;
+        $item["holy"] = $item["holy"] / $count;
+        $item["wicked"] = $item["wicked"] / $count;
+        return $item;
+    }
+    
+    private function normal_item_array($item)
+    {
+        $item["scarcity"] = $item["scarcity"] * 1.1;
+        $item["rigidity"] = $item["rigidity"] * 0.9;
+        $item["size"] = $item["size"] * 1.1;
+        $item["weight"] = $item["weight"] * 1.1;
+        $item["toxicity"] = $item["toxicity"] * 0.9;
+        $item["naturally"] = $item["naturally"] * 0.9;
+        $item["edibility"] = $item["edibility"] * 1.1;
+        $item["animality"] = $item["animality"] * 0.9;
+        $item["holy"] = $item["holy"] * 0.9;
+        $item["wicked"] = $item["wicked"] * 0.9;
+        return $item;
+    }
+    
+    private function holy_item_array($item)
+    {
+        $item["scarcity"] = $item["scarcity"] * 1.5;
+        $item["rigidity"] = $item["rigidity"] * 1.5;
+        $item["size"] = $item["size"] * 0.5;
+        $item["weight"] = $item["weight"] * 0.5;
+        $item["toxicity"] = $item["toxicity"] * 0.5;
+        $item["naturally"] = $item["naturally"] * 0.9;
+        $item["edibility"] = $item["edibility"] * 1.1;
+        $item["animality"] = $item["animality"] * 0.9;
+        $item["holy"] = $item["holy"] * 0.5;
+        $item["wicked"] = $item["wicked"] * 0.9;
+        return $item;
+    }
+    
+    private function dark_item_array($item)
+    {
+        $item["scarcity"] = $item["scarcity"] * 1.5;
+        $item["rigidity"] = $item["rigidity"] * 1.5;
+        $item["size"] = $item["size"] * 1.1;
+        $item["weight"] = $item["weight"] * 1.1;
+        $item["toxicity"] = $item["toxicity"] * 1.5;
+        $item["naturally"] = $item["naturally"] * 0.9;
+        $item["edibility"] = $item["edibility"] * 1.1;
+        $item["animality"] = $item["animality"] * 1.5;
+        $item["holy"] = $item["holy"] * 0.9;
+        $item["wicked"] = $item["wicked"] * 0.5;
+        return $item;
+    }
+    
+    private function super_item_array($item)
+    {
+        $item["scarcity"] = $item["scarcity"] * 2;
+        $item["rigidity"] = $item["rigidity"] * 1.5;
+        $item["size"] = $item["size"] * 0.5;
+        $item["weight"] = $item["weight"] * 0.5;
+        $item["toxicity"] = $item["toxicity"] * 0.5;
+        $item["naturally"] = $item["naturally"] * 0.9;
+        $item["edibility"] = $item["edibility"] * 1.1;
+        $item["animality"] = $item["animality"] * 1.5;
+        $item["holy"] = $item["holy"] * 0.5;
+        $item["wicked"] = $item["wicked"] * 0.5;
+        return $item;
     }
 }
 ?>

@@ -26,6 +26,7 @@ var bag = MageMasher.Bag =
 		    	var base_panel = $("<div/>").addClass("bag_item_div");
 		    	var main_panel = $("<div/>").addClass("panel panel-default bag_item");
 		    	main_panel.css("border-color", "#"+this.color_d);
+		    	main_panel.attr("p_key", this.p_key);
 		    	var panel_header = $("<div/>").addClass("panel-heading");
 		    	panel_header.css("cssText",
                       "background-image: -webkit-linear-gradient(top,#"+this.color_l+" 0,#"+this.color_d+" 100%);"
