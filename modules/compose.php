@@ -6,7 +6,7 @@ class compose extends base
         parent::__construct(__CLASS__);
     }
     
-    public function start()
+    public function start($request)
     {
         $smarty = $this->get_smarty();
         $smarty->assign('as', utils::crypt('compose'));
@@ -60,14 +60,13 @@ class compose extends base
         $user['now_pt'] = $sum;
     }
     
-    public function execute()
+    public function execute($request)
     {
         $smarty = $this->get_smarty();
         $smarty->assign('as', utils::crypt('compose'));
         $smarty->assign('do', utils::crypt('complete'));
         
-        $smarty->assign('targets', $_REQUEST["targets"]);
-        $lists = json_decode($_REQUEST["targets"], true);
+        $lists = json_decode($request["targets"], true);
         
         $sum_value = $this->get_item_array();
         $item_count = count($lists);
@@ -75,10 +74,6 @@ class compose extends base
         foreach($lists as $i => $value)
         {
             $lists[$i] = commons::get_bag_one($this->user_db, $value);
-            $colors = commons::get_item_color($lists[$i], false);
-            $lists[$i]['color_l'] = $colors['light'];
-            $lists[$i]['color_d'] = $colors['dark'];
-            
             $sum_value = $this->sum_item_array($sum_value, $lists[$i]);
         }
         // 平均値
@@ -103,21 +98,33 @@ class compose extends base
         if ($rand_result <= ($average_value['holy'] + $average_value['wicked'])) $super = true;
         
         $result = array();
-        if ($holy) $result[] = $holy_value;
-        if ($wicked) $result[] = $dark_value;
-        if ($super) $result[] = $super_value;
+        $rank = array();
+        if ($holy) { $result[] = $holy_value; $rank[] = 'holy'; }
+        if ($wicked) { $result[] = $dark_value; $rank[] = 'wicked'; }
+        if ($super) { $result[] = $super_value; $rank[] = 'super'; }
         if (count($result) > 0)
         {
             mt_srand();
             $rand_result = mt_rand(0, count($result) - 1);
             $result = $result[$rand_result];
+            $rank = $rank[$rand_result];
         }
         else
         {
             $result = $normal_value;
+            $rank = 'normal';
         }
+        $colors = commons::get_item_color($result, false);
+        $result['color_l'] = $colors['light'];
+        $result['color_d'] = $colors['dark'];
         
+        $smarty->assign('compose_items', $result);
+        $smarty->assign('compose_rank', $rank);
         $smarty->assign('lists', $lists);
+    }
+    public function complete($request)
+    {
+        var_dump($_POST);
     }
     
     private function get_item_array()

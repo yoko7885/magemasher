@@ -6,14 +6,14 @@ class signin extends base
         parent::__construct(__CLASS__);
     }
     
-    public function start()
+    public function start($request)
     {
         $smarty = $this->get_smarty();
         $smarty->assign('as', utils::crypt('signin'));
         $smarty->assign('do', utils::crypt('execute'));
     }
     
-    public function execute()
+    public function execute($request)
     {
         $email = $_POST['inputEmail'];
         $password = $_POST['inputPassword'];

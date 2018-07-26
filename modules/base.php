@@ -35,7 +35,7 @@ abstract class base
         }
         self::$smarty->assign($_POST);
     }
-    abstract public function start();
+    abstract public function start($request);
     
     public function set_db()
     {

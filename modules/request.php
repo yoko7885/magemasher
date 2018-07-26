@@ -6,17 +6,17 @@ class request extends base
         parent::__construct(__CLASS__);
     }
     
-    public function start(){}
+    public function start($request){}
     
-    public function search()
+    public function search($request)
     {
         $smarty = $this->get_smarty();
-        $smarty->assign('callback', $_REQUEST['callback']);
+        $smarty->assign('callback', $request['callback']);
         
         $sch_pt = commons::get_sch_pt($this->user_db);
         $now = $sch_pt['now'];
 
-        $field_id = $_REQUEST['field_id'];
+        $field_id = $request['field_id'];
         $field = commons::get_fields($this->db, $field_id);
 
         $json = new myjson();
@@ -35,10 +35,10 @@ class request extends base
         $smarty->assign('json', $json->get());
     }
     
-    public function get_bag()
+    public function get_bag($request)
     {
         $smarty = $this->get_smarty();
-        $smarty->assign('callback', $_REQUEST['callback']);
+        $smarty->assign('callback', $request['callback']);
         
         $bag = commons::get_bag($this->user_db, array('org_field_id','desc'));
         $bag = $this->edit_bag($bag);

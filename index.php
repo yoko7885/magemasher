@@ -39,7 +39,7 @@ do
         {
             if ($_REQUEST['do']) $do = utils::plain($_REQUEST['do']);
         }
-        $class->$do();
+        $class->$do($_REQUEST);
         $smarty = $class->get_smarty();
         if ($class->next_access)
         {
