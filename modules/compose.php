@@ -1,27 +1,43 @@
 <?php
+
+/**
+ * 合成実行クラス
+ */
 class compose extends base
 {
+    /**
+     * コンストラクタ
+     */
     public function __construct()
     {
         parent::__construct(__CLASS__);
     }
-    
+
+    /**
+     * 起動処理
+     * {@inheritDoc}
+     * @see base::start()
+     */
     public function start($request)
     {
         $smarty = $this->get_smarty();
         $smarty->assign('as', utils::crypt('compose'));
         $smarty->assign('do', utils::crypt('start'));
-        
+
         $account_id = $_SESSION['MGM_ACCOUNT_ID'];
         $user = commons::get_user($this->db, $account_id);
-        
+
         $this->refresh_sch_pt($user);
         $smarty->assign('user', $user);
-        
+
         $fields = commons::get_fields($this->db);
         $smarty->assign('fields', $fields);
     }
 
+    /**
+     * 探索ポイントの更新
+     * @param Array $user
+     */
     private function refresh_sch_pt(&$user)
     {
         $sch_pt = commons::get_sch_pt($this->user_db);
@@ -31,48 +47,48 @@ class compose extends base
 
         $one = 60 * 4; // 4分
         $up = $diff / $one;
-        
+
         $sum = round($up + $sch_pt['now'], 2);
-        
-        if ($user['sch_pt'] < $sum) $sum = $user['sch_pt'];
-        
-        $values = array
-        (
-            'now' => (String)$sum
-            , 'last' => (String)$time_now
+
+        if ($user['sch_pt'] < $sum)
+            $sum = $user['sch_pt'];
+
+        $values = array(
+            'now' => (string) $sum,
+            'last' => (string) $time_now
         );
 
-        $result = $this->user_db->update
-        (
-            array
-            (
-                'table' => 'sch_pt'
-                , 'where' => array('last >= 0')
-                , 'values' => $values
-            )
-        );
+        $result = $this->user_db->update(array(
+            'table' => 'sch_pt',
+            'where' => array(
+                'last >= 0'
+            ),
+            'values' => $values
+        ));
 
-        if (!$result)
-        {
-            die('An error occurred, txtSQL said: '.$this->user_db->get_last_error());
+        if (! $result) {
+            die('An error occurred, txtSQL said: ' . $this->user_db->get_last_error());
         }
-        
+
         $user['now_pt'] = $sum;
     }
-    
+
+    /**
+     * 合成の実行
+     * @param Array $request
+     */
     public function execute($request)
     {
         $smarty = $this->get_smarty();
         $smarty->assign('as', utils::crypt('compose'));
         $smarty->assign('do', utils::crypt('complete'));
-        
+
         $lists = json_decode($request["targets"], true);
-        
+
         $sum_value = $this->get_item_array();
         $item_count = count($lists);
-        
-        foreach($lists as $i => $value)
-        {
+
+        foreach ($lists as $i => $value) {
             $lists[$i] = commons::get_bag_one($this->user_db, $value);
             $sum_value = $this->sum_item_array($sum_value, $lists[$i]);
         }
@@ -86,47 +102,65 @@ class compose extends base
         $dark_value = $this->dark_item_array($average_value);
         // 超アイテム
         $super_value = $this->super_item_array($average_value);
-        
+
         mt_srand();
         $rand_result = mt_rand(0, 100);
-        if ($rand_result <= ($average_value['holy'])) $holy = true;
+        if ($rand_result <= ($average_value['holy']))
+            $holy = true;
         mt_srand();
         $rand_result = mt_rand(0, 100);
-        if ($rand_result <= ($average_value['wicked'])) $wicked = true;
+        if ($rand_result <= ($average_value['wicked']))
+            $wicked = true;
         mt_srand();
         $rand_result = mt_rand(0, 200);
-        if ($rand_result <= ($average_value['holy'] + $average_value['wicked'])) $super = true;
-        
+        if ($rand_result <= ($average_value['holy'] + $average_value['wicked']))
+            $super = true;
+
         $result = array();
         $rank = array();
-        if ($holy) { $result[] = $holy_value; $rank[] = 'holy'; }
-        if ($wicked) { $result[] = $dark_value; $rank[] = 'wicked'; }
-        if ($super) { $result[] = $super_value; $rank[] = 'super'; }
-        if (count($result) > 0)
-        {
+        if ($holy) {
+            $result[] = $holy_value;
+            $rank[] = 'holy';
+        }
+        if ($wicked) {
+            $result[] = $dark_value;
+            $rank[] = 'wicked';
+        }
+        if ($super) {
+            $result[] = $super_value;
+            $rank[] = 'super';
+        }
+        if (count($result) > 0) {
             mt_srand();
             $rand_result = mt_rand(0, count($result) - 1);
             $result = $result[$rand_result];
             $rank = $rank[$rand_result];
-        }
-        else
-        {
+        } else {
             $result = $normal_value;
             $rank = 'normal';
         }
         $colors = commons::get_item_color($result, false);
         $result['color_l'] = $colors['light'];
         $result['color_d'] = $colors['dark'];
-        
+
         $smarty->assign('compose_items', $result);
         $smarty->assign('compose_rank', $rank);
         $smarty->assign('lists', $lists);
     }
+
+    /**
+     * 合成の完了
+     * @param Array $request
+     */
     public function complete($request)
     {
         var_dump($_POST);
     }
-    
+
+    /**
+     * アイテム配列の初期化
+     * @return number[]
+     */
     private function get_item_array()
     {
         $value = array();
@@ -142,7 +176,13 @@ class compose extends base
         $value["wicked"] = 0;
         return $value;
     }
-    
+
+    /**
+     * アイテム配列の加算
+     * @param Array $to
+     * @param Array $from
+     * @return Array
+     */
     private function sum_item_array($to, $from)
     {
         $to["scarcity"] += $from["scarcity"];
@@ -157,7 +197,13 @@ class compose extends base
         $to["wicked"] += $from["wicked"];
         return $to;
     }
-    
+
+    /**
+     * アイテム配列の数値の平均化
+     * @param Array $item
+     * @param Array $count
+     * @return Array
+     */
     private function average_item_array($item, $count)
     {
         $item["scarcity"] = $item["scarcity"] / $count;
@@ -172,7 +218,12 @@ class compose extends base
         $item["wicked"] = $item["wicked"] / $count;
         return $item;
     }
-    
+
+    /**
+     * 合成結果の計算（Normal）
+     * @param Array $item
+     * @return Array
+     */
     private function normal_item_array($item)
     {
         $item["scarcity"] = $item["scarcity"] * 1.1;
@@ -187,7 +238,12 @@ class compose extends base
         $item["wicked"] = $item["wicked"] * 0.9;
         return $item;
     }
-    
+
+    /**
+     * 合成結果の計算（Holy）
+     * @param Array $item
+     * @return Array
+     */
     private function holy_item_array($item)
     {
         $item["scarcity"] = $item["scarcity"] * 1.5;
@@ -202,7 +258,12 @@ class compose extends base
         $item["wicked"] = $item["wicked"] * 0.9;
         return $item;
     }
-    
+
+    /**
+     * 合成結果の計算（wicked）
+     * @param Array $item
+     * @return Array
+     */
     private function dark_item_array($item)
     {
         $item["scarcity"] = $item["scarcity"] * 1.5;
@@ -217,7 +278,12 @@ class compose extends base
         $item["wicked"] = $item["wicked"] * 0.5;
         return $item;
     }
-    
+
+    /**
+     * 合成結果の計算（特殊）
+     * @param Array $item
+     * @return Array
+     */
     private function super_item_array($item)
     {
         $item["scarcity"] = $item["scarcity"] * 2;
